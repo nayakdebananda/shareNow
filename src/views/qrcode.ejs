@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Share Now</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <%- include('nav.ejs') %>
+    <div class="img-container">
+      <img src="<%=code%> " alt="http://192.168.28.4:2001/" srcset="" />
+      <div class="text">
+        <h3>Step 1:</h3>
+        <p>
+          Make sure that sender and receiver both connected through hotspot/same
+          wifi network.
+        </p>
+        <p>Scan the QR or enter the following address into a web browser.</p>
+        <h3><%=portInfo %></h3>
+      </div>
+    </div>
+  </body>
+</html>
