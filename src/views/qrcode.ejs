@@ -10,16 +10,17 @@
   <body>
     <%- include('nav.ejs') %>
     <div class="img-container">
-      <img src="<%=code%> " alt="http://192.168.28.4:2001/" srcset="" />
-      <div class="text">
-        <h3>Step 1:</h3>
-        <p>
+      <img src="/qr.png " alt="<%=portInfo %>" />
+      <p href="<%=portInfo %>"><%=portInfo %></p>
+    </div>
+    <div class="text">
+      <ul>
+        <li>
           Make sure that sender and receiver both connected through hotspot/same
           wifi network.
-        </p>
-        <p>Scan the QR or enter the following address into a web browser.</p>
-        <h3><%=portInfo %></h3>
-      </div>
+        </li>
+        <li>Scan the QR or enter the above address into a web browser.</li>
+      </ul>
     </div>
   </body>
 </html>

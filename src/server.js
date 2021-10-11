@@ -1,21 +1,40 @@
 const express = require('express')
 const app = express()
 const PORT = 2001
+const qr = require('qrcode')
 const fs = require('fs')
 const fileUpload = require('express-fileupload')
 const url = require('url')
 const path = require('path')
 const os = require('os')
-const ip = os.networkInterfaces()['Wi-Fi'][3].address
+const ip = os
+  .networkInterfaces()
+  ['Wi-Fi'].find(ip => ip.family == 'IPv4').address
 
 const address = `http://${ip}:${PORT}/`
 const tempPath = url.pathToFileURL(os.tmpdir()).pathname.replace('/', '')
 const fileSharePath = tempPath + '/uploads/'
+if (!fs.existsSync(fileSharePath)) {
+  fs.mkdirSync(fileSharePath)
+} else {
+  fs.rmSync(fileSharePath, { recursive: true })
+  fs.mkdirSync(fileSharePath)
+}
 app.use(fileUpload())
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
+qr.toFile(
+  __dirname + '/public/qr.png',
+  address,
+  { color: { dark: '#373941', light: '#cae3f1' } },
+  err => {
+    if (err) {
+      console.error(err)
+    }
+  }
+)
 
 app.get('/', (req, res) => {
   var files = fs.readdirSync(fileSharePath)
@@ -52,8 +71,7 @@ app.post('/upload', (req, res, next) => {
 })
 
 app.get('/qrcode', (req, res) => {
-  const qrcode = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${address}&choe=UTF-8`
-  res.render('qrcode', { code: qrcode, portInfo: address })
+  res.render('qrcode', { portInfo: address })
 })
 
 app.listen(PORT)

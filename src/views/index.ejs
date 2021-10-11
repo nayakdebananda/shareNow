@@ -9,10 +9,14 @@
   </head>
   <body>
     <%- include('nav.ejs') %> <% files.forEach(file =>{ %>
-    <div class="container">
+    <section>
       <a href="/download/<%= file %>"><%= file %> </a>
-    </div>
+    </section>
 
-    <% }) %>
+    <% }) %> <% if (files.length<1) { %>
+    <section>
+      <a href="/upload">Send Some Files</a>
+    </section>
+    <% } %>
   </body>
 </html>

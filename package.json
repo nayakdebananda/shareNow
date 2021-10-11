@@ -1,12 +1,19 @@
 {
-  "name": "electron-quick-start",
+  "name": "share-now",
+  "productName": "Share Now",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A minimal Electron application to share files",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build-installer": "electron-builder"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "build": {
+    "appId": "share-now",
+    "wim": {
+      "target": []
+    }
+  },
   "keywords": [
     "Electron",
     "quick",
@@ -14,14 +21,16 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Debananda Nayak",
+  "license": "MIT",
   "devDependencies": {
-    "electron": "^15.1.1"
+    "electron": "^15.1.1",
+    "electron-builder": "^22.11.7"
   },
   "dependencies": {
-    "express": "^4.17.1",
     "ejs": "^3.1.6",
-    "express-fileupload": "^1.2.1"
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "qrcode": "^1.4.4"
   }
 }

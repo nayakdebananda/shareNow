@@ -1,9 +1,14 @@
 const { app, BrowserWindow } = require('electron')
-const path = require('path')
-const express = require('express')
 const server = require('./src/server')
+const path = require('path')
+const url = require('url')
+const os = require('os')
+const fs = require('fs')
+const tempPath = url.pathToFileURL(os.tmpdir()).pathname.replace('/', '')
+const fileSharePath = tempPath + '/uploads'
 function createWindow() {
   // Create the browser window.
+
   const mainWindow = new BrowserWindow({
     width: 420,
     height: 680,
@@ -38,7 +43,6 @@ app.whenReady().then(() => {
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
-
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
