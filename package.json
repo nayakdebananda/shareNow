@@ -24,7 +24,7 @@
   "author": "Debananda Nayak",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^15.1.1",
+    "electron": "^24.0.0",
     "electron-builder": "^22.11.7"
   },
   "dependencies": {
